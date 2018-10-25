@@ -253,3 +253,7 @@ b2 = b*b * (a*a + c*c - b*b)
 b3 = c*c * (a*a + b*b - c*c)
 P = pm.dt.Point( pm.dt.Vector(A.x,B.x,C.x) * pm.dt.Vector(b1,n2,b3) , pm.dt.Vector(A.y,B.y,C.y) * pm.dt.Vector(b1,n2,b3),pm.dt.Vector(A.z,B.z,C.z) * pm.dt.Vector(b1,n2,b3) )
 P /= (b1 + b2 + b3)
+
+normal = (C-B)^(C-A)
+normal.normalize()
+up = P + normal*R
