@@ -1,0 +1,19 @@
+// triangle "edges"
+const Vector3d t = p2-p1;
+const Vector3d u = p3-p1;
+const Vector3d v = p3-p2;
+
+// triangle normal
+const Vector3d w = t.crossProduct(u);
+const double wsl = w.getSqrLength();
+if (wsl<10e-14) return false; // area of the triangle is too small (you may additionally check the points for colinearity if you are paranoid)
+
+// helpers
+const double iwsl2 = 1.0 / (2.0*wsl);
+const double tt = t*t;
+const double uu = u*u;
+
+// result circle
+Vector3d circCenter = p1 + (u*tt*(u*v) - t*uu*(t*v)) * iwsl2;
+double   circRadius = sqrt(tt * uu * (v*v) * iwsl2*0.5);
+Vector3d circAxis   = w / sqrt(wsl);
